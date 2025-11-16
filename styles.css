@@ -1,97 +1,154 @@
+/* Define CSS variables for colors and other styles */
 :root {
-  --primary-color: #007BFF;
-  --background-light: #ffffff;
-  --background-dark: #121212;
-  --text-light: #000000;
-  --text-dark: #f0f0f0;
+  --primary-color: #007BFF; /* Primary color used throughout the application */
+  --background-light: #ffffff; /* Light background color */
+  --background-dark: #121212; /* Dark background color */
+  --text-light: #000000; /* Light text color */
+  --text-dark: #f0f0f0; /* Dark text color */
 }
 
+/* Style the body element */
 body {
+  /* Set the font family to a system font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* Remove default margin and padding */
   margin: 0;
   padding: 0;
+  /* Center the content vertically and horizontally */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* Set the height to the full viewport height */
   height: 100vh;
+  /* Add a transition effect for background color and text color */
   transition: background-color 0.3s ease, color 0.3s ease;
+  /* Set the initial background color and text color */
   background-color: var(--background-light);
   color: var(--text-light);
 }
+
+/* Media query to apply dark mode styles when the user prefers a dark color scheme */
 @media (prefers-color-scheme: dark) {
-    body {
+  body {
+    /* Set the background color and text color to dark mode values */
     background-color: var(--background-dark);
     color: var(--text-dark);
-    }
+  }
 }
 
+/* Style the h1 element */
 h1 {
+  /* Set the font size to 2rem */
   font-size: 2rem;
+  /* Center the text */
   text-align: center;
+  /* Add a margin bottom */
   margin-bottom: 20px;
 }
 
+/* Style the label elements */
 label {
+  /* Set the font weight to 600 */
   font-weight: 600;
+  /* Add a margin top and bottom */
   margin: 10px 0;
 }
 
+/* Style the textarea and input[type="text"] elements */
 textarea, input[type="text"] {
+  /* Set the width to 100% and max-width to 400px */
   width: 100%;
   max-width: 400px;
+  /* Include padding and border in the width calculation */
   box-sizing: border-box;
+  /* Add padding */
   padding: 10px;
+  /* Set the font size to 1rem */
   font-size: 1rem;
+  /* Add a border radius and border */
   border-radius: 8px;
   border: 1px solid #ccc;
 }
 
+/* Style the textarea element */
 textarea {
+  /* Allow vertical resizing */
   resize: vertical;
 }
 
+/* Style the placeholder text */
 ::placeholder {
+  /* Set the font family to a system font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+/* Style the button elements */
 button {
+  /* Add a margin top */
   margin-top: 1rem;
+  /* Set the font size to 1.2rem */
   font-size: 1.2rem;
+  /* Set the background color to the primary color */
   background-color: var(--primary-color);
+  /* Set the text color to white */
   color: white;
+  /* Add padding */
   padding: 10px 20px;
+  /* Remove the border */
   border: none;
+  /* Add a border radius */
   border-radius: 50px;
+  /* Change the cursor to a pointer */
   cursor: pointer;
 }
 
+/* Style the button elements on hover */
 button:hover {
+  /* Change the background color on hover */
   background-color: #0056b3;
 }
 
+/* Style the button elements when disabled */
 button:disabled {
+  /* Reduce the opacity */
   opacity: 0.6;
+  /* Change the cursor to not-allowed */
   cursor: not-allowed;
 }
 
+/* Style the .status element */
 .status {
+  /* Add a margin top */
   margin-top: 1rem;
+  /* Set the font size to 1rem */
   font-size: 1rem;
+  /* Center the text */
   text-align: center;
 }
 
+/* Style the #toggleMode button */
 #toggleMode {
+  /* Add a margin top */
   margin-top: 1rem;
+  /* Set the background color */
   background-color: #006eff;
+  /* Set the text color to white */
   color: white;
+  /* Add padding */
   padding: 10px 20px;
+  /* Remove the border */
   border: none;
+  /* Add a border radius */
   border-radius: 50px;
+  /* Change the cursor to a pointer */
   cursor: pointer;
+  /* Set the font size to 1.2rem */
   font-size: 1.2rem;
 }
 
+/* Style the #toggleMode button on hover */
 #toggleMode:hover {
+  /* Change the background color on hover */
   background-color: #0056b3;
 }

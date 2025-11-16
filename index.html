@@ -1,45 +1,65 @@
+<!-- Define the document type and language -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Specify the character encoding and title of the page -->
   <meta charset="UTF-8">
   <title>Support Agent</title>
+  <!-- Link to the external stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Display a heading for the manual message sender -->
   <h1>Manual Message Sender</h1>
 
+  <!-- Input field for the channel ID -->
   <label for="channel">Channel ID</label>
   <input type="text" id="channel" placeholder="Enter channel ID">
 
+  <!-- Textarea for the message to be sent -->
   <label for="message">Message</label>
   <textarea id="message" placeholder="Type your text here..."></textarea>
 
-
+  <!-- Button to trigger the message sending -->
   <button id="sendBtn">Send</button>
 
+  <!-- Div to display the status of the message sending -->
   <div id="status" class="status"></div>
 
+  <!-- Script to handle the message sending -->
   <script>
+    // Get references to the input elements and status div
     const messageInput = document.getElementById("message");
     const sendBtn = document.getElementById("sendBtn");
     const statusDiv = document.getElementById("status");
 
+    /**
+     * Send the message to the webhook.
+     * @async
+     */
     async function sendToWebhook() {
+      // URL of the webhook endpoint
       const url = "http://10.1.1.66:5678/webhook-test/b3b49535-ffd3-4827-a714-cb881b37ef53";
+      // Get the message text from the input field
       const message = messageInput.value.trim();
 
+      // Check if the message is not empty
       if (!message) {
+        // Display an error message if the input is empty
         statusDiv.textContent = "Please enter a message.";
         statusDiv.style.color = "red";
         return;
       }
 
+      // Disable the send button and display a sending status
       sendBtn.disabled = true;
       statusDiv.textContent = "Sending...";
       statusDiv.style.color = "black";
 
       try {
+        // Get the channel ID from the input field
         const channel = document.getElementById("channel").value.trim();
+        // Send a POST request to the webhook endpoint with the message and channel ID
         const res = await fetch(url, {
           method: "POST",
           headers: {
@@ -48,19 +68,25 @@
           body: JSON.stringify({ text: message, channel: channel })
         });
 
+        // Check if the response was successful
         if (!res.ok) {
+          // Throw an error if the response was not OK
           throw new Error(`HTTP ${res.status}`);
         }
+        // Display a success message
         statusDiv.textContent = "Message sent successfully.";
         statusDiv.style.color = "green";
       } catch (err) {
+        // Display an error message if the sending failed
         statusDiv.textContent = "Failed to send: " + err.message;
         statusDiv.style.color = "red";
       } finally {
+        // Re-enable the send button
         sendBtn.disabled = false;
       }
     }
 
+    // Add an event listener to the send button to trigger the message sending
     sendBtn.addEventListener("click", sendToWebhook);
   </script>
 </body>
