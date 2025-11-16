@@ -23,7 +23,7 @@ This is a simple web application designed to integrate with n8n, a workflow auto
 1. Clone the repository to your local machine.
 2. Navigate to the project directory in your terminal.
 3. Run the following command to build and start the Docker container:
-   ```bash
+```bash
 docker-compose up -d
 ```
 4. Access the web application by visiting `http://localhost:8080` in your web browser.
