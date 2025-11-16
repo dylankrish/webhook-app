@@ -53,8 +53,7 @@
 <body>
   <h1>Webhook Text Sender</h1>
 
-  <label for="webhookUrl">Webhook URL</label>
-  <input id="webhookUrl" type="url" placeholder="https://example.com/webhook" />
+
 
   <label for="message">Message</label>
   <textarea id="message" placeholder="Type your text here..."></textarea>
@@ -70,7 +69,7 @@
     const statusDiv = document.getElementById("status");
 
     async function sendToWebhook() {
-      const url = webhookInput.value.trim();
+      const url = "https://static-hardcoded-url.com/webhook";
       const message = messageInput.value.trim();
 
       if (!url) {
