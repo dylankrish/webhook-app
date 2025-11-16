@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Webhook Text Sender</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 16px;
+    }
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    input, textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px 10px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 1.2rem;
+      padding: 10px 18px;
+      font-size: 1rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .status {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Webhook Text Sender</h1>
+
+  <label for="webhookUrl">Webhook URL</label>
+  <input id="webhookUrl" type="url" placeholder="https://example.com/webhook" />
+
+  <label for="message">Message</label>
+  <textarea id="message" placeholder="Type your text here..."></textarea>
+
+  <button id="sendBtn">Send</button>
+
+  <div id="status" class="status"></div>
+
+  <script>
+    const webhookInput = document.getElementById("webhookUrl");
+    const messageInput = document.getElementById("message");
+    const sendBtn = document.getElementById("sendBtn");
+    const statusDiv = document.getElementById("status");
+
+    async function sendToWebhook() {
+      const url = webhookInput.value.trim();
+      const message = messageInput.value.trim();
+
+      if (!url) {
+        statusDiv.textContent = "Please enter a webhook URL.";
+        statusDiv.style.color = "red";
+        return;
+      }
+      if (!message) {
+        statusDiv.textContent = "Please enter a message.";
+        statusDiv.style.color = "red";
+        return;
+      }
+
+      sendBtn.disabled = true;
+      statusDiv.textContent = "Sending...";
+      statusDiv.style.color = "black";
+
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ text: message })
+        });
+
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+        statusDiv.textContent = "Message sent successfully.";
+        statusDiv.style.color = "green";
+      } catch (err) {
+        statusDiv.textContent = "Failed to send: " + err.message;
+        statusDiv.style.color = "red";
+      } finally {
+        sendBtn.disabled = false;
+      }
+    }
+
+    sendBtn.addEventListener("click", sendToWebhook);
+  </script>
+</body>
+</html>
+
