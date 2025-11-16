@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Webhook Text Sender</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
 </head>
 <body>
   <h1>Webhook Text Sender</h1>
-
-
 
   <label for="message">Message</label>
   <textarea id="message" placeholder="Type your text here..."></textarea>
 
   <button id="sendBtn">Send</button>
+  <button id="toggleMode" onclick="toggleMode()">Toggle Light/Dark Mode</button>
 
   <div id="status" class="status"></div>
 
   <script>
-    const webhookInput = document.getElementById("webhookUrl");
     const messageInput = document.getElementById("message");
     const sendBtn = document.getElementById("sendBtn");
     const statusDiv = document.getElementById("status");
@@ -27,11 +30,6 @@
       const url = "https://static-hardcoded-url.com/webhook";
       const message = messageInput.value.trim();
 
-      if (!url) {
-        statusDiv.textContent = "Please enter a webhook URL.";
-        statusDiv.style.color = "red";
-        return;
-      }
       if (!message) {
         statusDiv.textContent = "Please enter a message.";
         statusDiv.style.color = "red";
@@ -68,4 +66,3 @@
   </script>
 </body>
 </html>
-
