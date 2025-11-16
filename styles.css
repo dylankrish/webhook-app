@@ -37,7 +37,7 @@ label {
   margin: 10px 0;
 }
 
-textarea {
+textarea, input[type="text"] {
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
@@ -45,7 +45,14 @@ textarea {
   font-size: 1rem;
   border-radius: 8px;
   border: 1px solid #ccc;
+}
+
+textarea {
   resize: vertical;
+}
+
+::placeholder {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 button {
