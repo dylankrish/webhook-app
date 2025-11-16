@@ -8,8 +8,12 @@
 <body>
   <h1>Manual Message Sender</h1>
 
+  <label for="channel">Channel Selection</label>
+  <input type="text" id="channel" placeholder="Enter channel name">
+
   <label for="message">Message</label>
   <textarea id="message" placeholder="Type your text here..."></textarea>
+
 
   <button id="sendBtn">Send</button>
 
@@ -35,12 +39,13 @@
       statusDiv.style.color = "black";
 
       try {
+        const channel = document.getElementById("channel").value.trim();
         const res = await fetch(url, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ text: message })
+          body: JSON.stringify({ text: message, channel: channel })
         });
 
         if (!res.ok) {
