@@ -19,10 +19,11 @@ body {
   background-color: var(--background-light);
   color: var(--text-light);
 }
-
-body.dark-mode {
-  background-color: var(--background-dark);
-  color: var(--text-dark);
+@media (prefers-color-scheme: dark) {
+    body {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+    }
 }
 
 h1 {
